@@ -1,0 +1,28 @@
+---
+title: "Assignment1"
+author: "Sophia Leiker"
+date: "2/13/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Why I am Taking this Course
+
+I am taking this course because I am interested in more of the CS side of programming, the data structures and best practices used. I have been working in R with classmates but am just starting some work with The Nature Conservancy which includes large databases, GitHub repositories, and moving data across multiple platforms. For this I feel like I hope to get out of this class more best practices on how to manage data using their various workflows. Most of my work that I envision for programming in my career is focused on data wrangling for spatial data science with an emphasis on remote sensing. I also hope to begin to learn python due to python being prominent for ArcPro/spatial data analysis and thus I plan to use the lessons from this class to other coding platforms. 
+
+
+***
+
+## My Data Science Background
+
+I have a background in R based on Bren’s intro and Advanced Data Science class. I have also been working on data analysis in R within my group project to carry out time series assessments of spatial ET measurements across a landscape. Finally I took a MEDS course on Remote Sensing Analysis which dove into more spatial data and map creation in R. I have also used Java Script briefly for remote sensing analysis in Google Earth Engine, as well as basic Python in an intro class during my undergraduate class. I hope to incorporate coding into future jobs as a tool, but not the primary work being done. 
+
+
+
+
+***
+
+END CODE

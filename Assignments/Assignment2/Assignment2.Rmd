@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
 ```
 
 Testing out my function
@@ -19,20 +20,14 @@ a_light
 a_heavy <- power_gen_new(c_rolling, 15000, g=9.8, V=(c(30,22.22,33.33,11.11, 1.389)), 16, p_air=1.2, c_drag=0.3)
 a_heavy
 
+V=c(30,22.22,33.33,11.11, 1.389)
 
-#Converting 80km/hr
-converted <- 5/3.6
-converted
+newframe <- data.frame(cbind(V, a_heavy, a_light))
 
-a_80 <- power_gen_new(m= 31752, V= 22.22, A= 16)
-a_80
-
-a_120 <- power_gen_new(c_rolling, 31752, g=9.8, 33.33, 16, p_air=1.2, c_drag=0.3)
-a_120
-
-a_40 <-power_gen_new(c_rolling, 31752, g=9.8, 11.11, 16, p_air=1.2, c_drag=0.3)
-a_40
-
+ggplot(data = newframe, aes(x=V, y =a_heavy)) +
+  geom_line() +
+  geom_line(aes(x=V, y =newframe$a_light)) +
+  labs(title = "Power Generation from a Heavy vs Light Truck", y = "Power Generated in Watts", x = "Vehicle speed (assuming no headwind) in m/s (or mps)")
 
 ```
 

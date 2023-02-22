@@ -1,5 +1,5 @@
 ---
-title: "Assignment2"
+title: "Assignment3"
 author: "Sophia Leiker"
 date: "2/22/2023"
 output: html_document
@@ -26,7 +26,8 @@ newframe <- data.frame(cbind(V, a_heavy, a_light))
 
 ggplot(data = newframe, aes(x=V, y =a_heavy)) +
   geom_line() +
-  geom_line(aes(x=V, y =newframe$a_light)) +
+  geom_line(aes(x=V, y =a_light)) +
+  scale_color_manual(values = c("a_heavy" = "red", "a_light" = "green"))+
   labs(title = "Power Generation from a Heavy vs Light Truck", y = "Power Generated in Watts", x = "Vehicle speed (assuming no headwind) in m/s (or mps)")
 
 ```

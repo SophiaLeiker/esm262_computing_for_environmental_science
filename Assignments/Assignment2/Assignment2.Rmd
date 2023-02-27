@@ -13,11 +13,11 @@ library(ggplot2)
 Testing out my function
 ```{r}
 #For power at 31752 kg
-a_light <- power_gen_new(c_rolling, 31752, g=9.8, V=(c(30,22.22,33.33,11.11, 1.389)), 16, p_air=1.2, c_drag=0.3)
+a_light <- power_gen_new(c_rolling=0.015, 31752, g=9.8, V=(c(30,22.22,33.33,11.11, 1.389)), 16, p_air=1.2, c_drag=0.3)
 a_light
 
 #For power at 31752 kg
-a_heavy <- power_gen_new(c_rolling, 15000, g=9.8, V=(c(30,22.22,33.33,11.11, 1.389)), 16, p_air=1.2, c_drag=0.3)
+a_heavy <- power_gen_new(c_rolling=0.015, 15000, g=9.8, V=(c(30,22.22,33.33,11.11, 1.389)), 16, p_air=1.2, c_drag=0.3)
 a_heavy
 
 V=c(30,22.22,33.33,11.11, 1.389)
@@ -25,10 +25,11 @@ V=c(30,22.22,33.33,11.11, 1.389)
 newframe <- data.frame(cbind(V, a_heavy, a_light))
 
 ggplot(data = newframe, aes(x=V, y =a_heavy)) +
-  geom_line() +
-  geom_line(aes(x=V, y =a_light)) +
-  scale_color_manual(values = c("a_heavy" = "red", "a_light" = "green"))+
-  labs(title = "Power Generation from a Heavy vs Light Truck", y = "Power Generated in Watts", x = "Vehicle speed (assuming no headwind) in m/s (or mps)")
+  geom_line(aes(y=a_heavy,x= V, colour="a_heavy")) +
+  geom_line(aes(x=V, y =a_light, colour="a_light")) +
+  scale_color_manual(values = c("a_heavy" = "blue", "a_light" = "green"))+
+  labs(title = "Power Generation from a Heavy vs Light Truck", y = "Power Generated in Watts", x = "Vehicle speed (assuming no headwind) in m/s (or mps)", color = "Type of Truck")
+
 
 ```
 

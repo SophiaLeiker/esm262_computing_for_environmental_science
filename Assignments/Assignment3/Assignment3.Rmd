@@ -42,7 +42,7 @@ Mean highway speed is 100 km/hr
 ```{r sampling2, eval=TRUE, echo=TRUE}
 
 #sourcing our autopower function ("../R/autopower.R")
-source(here('Assignments', "Assignment2", "power_gen_new.R"))
+source(here("Working", "autopower.R"))
 
 
 # generate a structure to store info on our possible cars
@@ -56,7 +56,7 @@ speed_base = 100 * 0.28
 # because I have one mass and area for each car and only 1 speed
 # I can estimate power for each car type
 # add to the data structure
-possible_cars$power = power_gen_new(V=speed_base, A = possible_cars$area, m=possible_cars$mass)
+possible_cars$power = autopower(V=speed_base, A = possible_cars$area, m=possible_cars$mass)
 
 head(possible_cars)
 
@@ -112,22 +112,22 @@ plot(density(speeds), ylab="Distribution of Speeds in (m/s)")
 possible_cars[1,]
 
 # we could do it by hand
-powerA = power_gen_new(V=speeds, A = possible_cars$area[1], m=possible_cars$mass[1])
+powerA = autopower(V=speeds, A = possible_cars$area[1], m=possible_cars$mass[1])
 # lets look at what we get
 summary(powerA)
 
 # next car (row 2)
-powerB = power_gen_new(V=speeds, A = possible_cars$area[2], m=possible_cars$mass[2])
+powerB = autopower(V=speeds, A = possible_cars$area[2], m=possible_cars$mass[2])
 # lets look at what we get
 summary(powerB)
 
 # next car (row 3)
-powerC = power_gen_new(V=speeds, A = possible_cars$area[3], m=possible_cars$mass[3])
+powerC = autopower(V=speeds, A = possible_cars$area[3], m=possible_cars$mass[3])
 # lets look at what we get
 summary(powerC)
 
 # next car (row 4)
-powerD = power_gen_new(V=speeds, A = possible_cars$area[4], m=possible_cars$mass[4])
+powerD = autopower(V=speeds, A = possible_cars$area[4], m=possible_cars$mass[4])
 # lets look at what we get
 summary(powerD)
 
@@ -191,7 +191,7 @@ plot(density(speeds), ylab="Distribution of Speeds in (m/s)")
 #SOPHIA NOTES: for every single car, you want it to run a power function for all the speeds, you want to repeat the auto function for each row for all the possible car, but also have additional inputs you want to run for each
 #the second part is saying for each run, you want to run (on the right side it is doing this for the autopower function)
 #so when you are running the pmap, for Area A in my function I want to use area becuase in the function we used A, then here we also need to delinate A. For A and m, you use all the possible areas and masses, but for speeds you use all the possible speeds that wer created above. 
-powerall2 = pmap(list(A = possible_cars$area, m=possible_cars$mass), power_gen_new, V=speeds)
+powerall2 = pmap(list(A = possible_cars$area, m=possible_cars$mass), autopower, V=speeds)
 
 # lets turn to a data frame for easier graphing
 # we can add column names
@@ -199,7 +199,7 @@ powerall2 = as.data.frame(powerall2, col.names=possible_cars$name)
 
 # apply family of functions does this to - FYI
 # what mapply does is run the function for each row in parameters listed, using values for other parameters listed in MoreArgs EACH time - a column for row in parameter list is returned
-powerall2b = mapply(FUN=power_gen_new, A = possible_cars$area, m=possible_cars$mass, MoreArgs = list(V=speeds)  )
+powerall2b = mapply(FUN=autopower, A = possible_cars$area, m=possible_cars$mass, MoreArgs = list(V=speeds)  )
 # we can add column names
 colnames(powerall2b)=possible_cars$name
 
@@ -283,7 +283,7 @@ nrow(possible_cars)
 
 # index in to a matrix (like powerall3) is by row and column powerall3[2,5] is 2nd row and 5th column
 for (i in 1:nrow(possible_cars)) {
-  powerall3[,i] = power_gen_new(A=possible_cars$area[i], m=possible_cars$mass[i], V=speeds)
+  powerall3[,i] = autopower(A=possible_cars$area[i], m=possible_cars$mass[i], V=speeds)
 }
 
 # now it looks like above

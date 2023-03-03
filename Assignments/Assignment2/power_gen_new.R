@@ -18,3 +18,4 @@ power_gen_new = function(c_rolling=0.015, m, g=9.8, V, A, p_air=1.2, c_drag=0.3)
 #p_air = density of air (1.2kg/m3)
 
 #Pb is power in Watts
+

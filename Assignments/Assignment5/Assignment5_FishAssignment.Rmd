@@ -1,0 +1,34 @@
+---
+title: 'Assignment 5: Fish Assignment'
+author: "Sophia Leiker"
+date: "3/6/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(purrr)
+library(here)
+```
+
+```{r}
+#Reading in the data
+
+possible.fish <- read.delim(here("Working", "fish.txt"))
+head(possible.fish)
+
+catch1 = base::sample(possible.fish, size=20, replace=T)
+# because possible.fish was a factor catch1 will be a factor
+catch1
+
+#selecting for the rarest fish
+rarestfish = names(which.min(summary(as.factor(catch1))))
+rarestfish
+
+plottitle = sprintf("The rarest fist is %s", rarestfish)
+ggplot(data.frame(catch1=catch1), aes(catch1, fill=catch1))+geom_histogram(stat="count")+labs(title=plottitle)
+
+```
+

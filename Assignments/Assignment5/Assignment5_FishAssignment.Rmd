@@ -15,12 +15,24 @@ library(here)
 
 ```{r}
 #Reading in the data
-
 possible.fish <- read.delim(here("Working", "fish.txt"))
+
+#Looking at the output to check that it loaded in correctly
 head(possible.fish)
 
-#Fish function is stored in the Working folder 
-fish_function(possible.fish)
+#sourcing the function
+#Fish function is stored in the "R" folder 
+source(here("R", "fish_function.R"))
 
+#defining results here
+results <- fish_function(possible.fish)
+
+#printing results here
+print(results)
+
+#pulling out the individual results here
+most_common_fish <- results[1]
+rarest_fish <- results[2]
+total_number <- results [3]
 ```
 
